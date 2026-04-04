@@ -95,7 +95,8 @@ This project was created as part of a low-code chatbot deployment exercise and d
 
 ## Screenshot
 
-Add a screenshot of the live chatbot website here for submission.
+<img width="1887" height="865" alt="image" src="https://github.com/user-attachments/assets/5ab7c020-f37c-4c8e-93ec-a22c1f45cf2b" />
+
 
 ---
 
