@@ -3,6 +3,9 @@
 A low-code chatbot project built for the **Low-Code Chatbot Deployment Exercise**.  
 This chatbot helps users discover products based on category and budget, then guides them toward product details and purchase options.
 
+🔗** Live Demo:**
+https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/
+
 ## Project Overview
 
 This project is a **Mini E-commerce Product Guide Bot** created using **WotNot** and embedded into a static webpage hosted on **GitHub Pages**.
