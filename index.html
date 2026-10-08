@@ -2,87 +2,1469 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mini E-commerce Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shopie Guide — AI Product Recommendation Assistant</title>
+
+  <meta
+    name="description"
+    content="Shopie Guide is an AI-powered e-commerce product recommendation assistant for discovering and comparing phones, laptops and shoes."
+  >
+  <meta name="author" content="Ashish Sharma">
+  <meta name="theme-color" content="#20242b">
+
+  <!-- =========================================================
+       BOTPRESS WEBCHAT
+       ========================================================= -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/10/08/07/20261008075305-UUXZDSPL.js" defer></script>
+
   <style>
+    :root {
+      --bg: #f8f6f1;
+      --surface: #fffdf9;
+      --surface-soft: #f0ede6;
+      --text: #20242b;
+      --muted: #70757d;
+      --border: #e2ddd4;
+      --dark: #20242b;
+      --accent: #8de1e7;
+      --accent-dark: #167d88;
+      --shadow: 0 22px 60px rgba(32, 36, 43, 0.12);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      text-align: center;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 20px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    header h1 {
-      margin: 0;
+    button {
+      font: inherit;
     }
 
     .container {
-      padding: 20px;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .chat-container {
+    /* =========================
+       NAVIGATION
+       ========================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 246, 241, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(32, 36, 43, 0.08);
+    }
+
+    .nav-inner {
+      min-height: 72px;
       display: flex;
-      justify-content: center;
-      margin-top: 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    iframe {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--dark);
+      color: var(--accent);
+      font-size: 19px;
+      box-shadow: 0 8px 22px rgba(32, 36, 43, 0.13);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      color: #7a7f87;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: #666b73;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-cta,
+    .primary-btn {
+      border: 0;
+      cursor: pointer;
+      background: var(--dark);
+      color: #fff;
+      font-weight: 750;
+      box-shadow: 0 10px 28px rgba(32, 36, 43, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-cta {
+      padding: 11px 17px;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      font-size: 13px;
     }
 
-    footer {
-      margin-top: 30px;
-      padding: 15px;
-      background: #0f172a;
-      color: white;
+    .nav-cta:hover,
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 32px rgba(32, 36, 43, 0.19);
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+      position: relative;
+      padding: 94px 0 78px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      top: -250px;
+      right: -150px;
+      border-radius: 50%;
+      background: rgba(141, 225, 231, 0.22);
+      filter: blur(5px);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #edf7f7;
+      border: 1px solid #d3eeee;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #49adb7;
+    }
+
+    .hero h1 {
+      max-width: 720px;
+      margin-bottom: 24px;
+      color: #1d2026;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      color: var(--accent-dark);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin-bottom: 32px;
+      color: #686d75;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       font-size: 14px;
     }
 
-    .badge {
-      background: #22c55e;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 8px;
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.58);
+      color: #30343b;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat strong {
+      color: #20242b;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .stat span {
+      color: #7c8188;
       font-size: 12px;
-      margin-left: 10px;
+      font-weight: 650;
+    }
+
+    /* =========================
+       BOT PREVIEW
+       ========================= */
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .bot-card {
+      position: relative;
+      width: min(430px, 100%);
+      padding: 30px;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--dark);
+      color: #fff;
+      box-shadow: 0 30px 70px rgba(32, 36, 43, 0.22);
+    }
+
+    .bot-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      top: -90px;
+      right: -90px;
+      border-radius: 50%;
+      background: rgba(141, 225, 231, 0.1);
+    }
+
+    .bot-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .bot-avatar {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: #f0ebe2;
+      color: var(--dark);
+      font-size: 26px;
+    }
+
+    .bot-meta strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .bot-meta span {
+      display: block;
+      color: #aeb4bc;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .status {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(141, 225, 231, 0.1);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7dd7df;
+    }
+
+    .chat-preview {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      width: fit-content;
+      max-width: 92%;
+      padding: 12px 15px;
+      border-radius: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message.user {
+      margin-left: auto;
+      background: var(--accent);
+      color: #172125;
+      border-bottom-right-radius: 5px;
+    }
+
+    .message.bot {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e7ea;
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-card-product {
+      padding: 13px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .product-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .product-name {
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .product-price {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .product-info {
+      margin-top: 6px;
+      color: #aeb4bc;
+      font-size: 11px;
+    }
+
+    /* =========================
+       COMMON SECTIONS
+       ========================= */
+
+    section {
+      padding: 86px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 42px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      margin-bottom: 14px;
+      color: #20242b;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: #70757d;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* =========================
+       CATEGORIES
+       ========================= */
+
+    .categories-section {
+      background: #efede7;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      padding: 28px;
+      border-radius: 22px;
+      background: #fbfaf7;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px rgba(32, 36, 43, 0.09);
+    }
+
+    .category-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: #edf7f7;
+      font-size: 24px;
+    }
+
+    .category-card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .category-card p {
+      color: #747981;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .category-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #f0ede7;
+      color: #666b72;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       HOW IT WORKS
+       ========================= */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #fbfaf7;
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--dark);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .step-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .step-card p {
+      color: #747981;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       TRY IT
+       ========================= */
+
+    .prompt-section {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .prompt-section .section-kicker {
+      color: var(--accent);
+    }
+
+    .prompt-section .section-head h2 {
+      color: #fff;
+    }
+
+    .prompt-section .section-head p {
+      color: #aeb4bc;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .prompt-card {
+      padding: 17px 18px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .prompt-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .prompt-text {
+      color: #e6e8eb;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       ABOUT / TRUST
+       ========================= */
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .trust-card {
+      padding: 28px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .trust-card h3 {
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .trust-card p {
+      color: #73787f;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .trust-list {
+      margin-top: 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: #454a52;
+      font-size: 13px;
+    }
+
+    .trust-check {
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    /* =========================
+       CTA
+       ========================= */
+
+    .cta-section {
+      padding-top: 22px;
+      padding-bottom: 94px;
+    }
+
+    .cta-card {
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(141, 225, 231, 0.16), transparent 36%),
+        var(--dark);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-card h2 {
+      max-width: 620px;
+      margin-bottom: 12px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .cta-card p {
+      max-width: 570px;
+      color: #aeb4bc;
+      font-size: 14px;
+    }
+
+    .cta-card .primary-btn {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: #172125;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      padding: 30px 0;
+      background: #f4f1eb;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      color: #747981;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .footer-copy strong {
+      color: #34383f;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      color: #62676e;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .hero-visual {
+        justify-content: flex-start;
+      }
+
+      .category-grid,
+      .steps-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .nav-cta {
+        padding: 9px 13px;
+      }
+
+      .hero {
+        padding: 58px 0 55px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
+      }
+
+      .hero-stats {
+        gap: 20px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .prompt-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card {
+        padding: 30px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🛒 Mini E-commerce Chatbot</h1>
-  <p>Find the best products based on your needs</p>
-</header>
+  <!-- =========================
+       NAVIGATION
+       ========================= -->
 
-<div class="container">
-  <h2>💬 Chat with our Assistant</h2>
-  <p>Select category, budget, and get product suggestions instantly!</p>
+  <nav class="navbar">
+    <div class="container nav-inner">
 
-  <div class="chat-container">
-    <iframe 
-      width="400" 
-      height="600" 
-      src="https://embed.wotnot.io/4TP2SKFgnTuk071037854113svXJyLXd/bot/7aTo3pf37Cqn071024335295JlcMsnv1?display_header=false&history_retention=false" 
-      frameborder="0">
-    </iframe>
-  </div>
-</div>
+      <a href="#" class="brand" aria-label="Shopie Guide home">
 
-<footer>
-  <p>
-    Developed by <strong>Ashish Sharma</strong> 
-    <span class="badge">AI & Data Science Student</span>
-  </p>
-  <p>Project: Low-Code Chatbot Deployment (Mini E-commerce Guide Bot)</p>
-</footer>
+        <div class="brand-mark">🛍</div>
+
+        <div class="brand-text">
+          <span class="brand-name">Shopie Guide</span>
+          <span class="brand-subtitle">AI Product Advisor</span>
+        </div>
+
+      </a>
+
+      <div class="nav-links">
+        <a href="#categories">Categories</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#try-it">Try it</a>
+        <a href="#about">About</a>
+      </div>
+
+      <button class="nav-cta" type="button" onclick="openShopieGuide()">
+        Chat with Shopie Guide
+      </button>
+
+    </div>
+  </nav>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+         ========================= -->
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            AI-powered product discovery
+          </div>
+
+          <h1>
+            Shopping decisions,
+            <span>made smarter.</span>
+          </h1>
+
+          <p class="hero-description">
+            Shopie Guide is an AI-powered e-commerce assistant that
+            understands your budget, requirements and use case, then
+            helps you discover and compare relevant products from a
+            structured catalog.
+          </p>
+
+          <div class="hero-actions">
+
+            <button class="primary-btn" type="button" onclick="openShopieGuide()">
+              Start shopping with AI
+              <span>→</span>
+            </button>
+
+            <a class="secondary-btn" href="#how-it-works">
+              See how it works
+            </a>
+
+          </div>
+
+          <div class="hero-stats">
+
+            <div class="stat">
+              <strong>490</strong>
+              <span>catalog entries</span>
+            </div>
+
+            <div class="stat">
+              <strong>3</strong>
+              <span>product categories</span>
+            </div>
+
+            <div class="stat">
+              <strong>AI</strong>
+              <span>natural-language search</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="bot-card">
+
+            <div class="bot-top">
+
+              <div class="bot-avatar" aria-hidden="true">🤖</div>
+
+              <div class="bot-meta">
+                <strong>Shopie Guide</strong>
+                <span>AI Product Recommendation Assistant</span>
+              </div>
+
+              <div class="status">
+                <span class="status-dot"></span>
+                Online
+              </div>
+
+            </div>
+
+            <div class="chat-preview">
+
+              <div class="message user">
+                I need a gaming laptop under ₹80,000.
+              </div>
+
+              <div class="message bot">
+                I'll prioritize gaming-focused options that fit your
+                budget and match the use case.
+              </div>
+
+              <div class="chat-card-product">
+
+                <div class="product-line">
+                  <div class="product-name">
+                    Gaming laptop option
+                  </div>
+                  <div class="product-price">
+                    From catalog
+                  </div>
+                </div>
+
+                <div class="product-info">
+                  Ranked using budget, intended use and relevant
+                  specifications from the ProductCatalog.
+                </div>
+
+              </div>
+
+              <div class="message bot">
+                Want me to compare it with another option?
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+         ========================= -->
+
+    <section class="categories-section" id="categories">
+
+      <div class="container">
+
+        <div class="section-head">
+          <span class="section-kicker">Explore</span>
+
+          <h2>
+            Three categories.
+            One intelligent guide.
+          </h2>
+
+          <p>
+            Shopie Guide currently focuses on phones, laptops and shoes,
+            with recommendations grounded in the project's structured
+            product catalog.
+          </p>
+        </div>
+
+
+        <div class="category-grid">
+
+          <article class="category-card">
+
+            <div class="category-icon">📱</div>
+
+            <h3>Phones</h3>
+
+            <p>
+              Discover smartphones based on price, brand,
+              performance, photography, everyday use and
+              other requirements.
+            </p>
+
+            <div class="category-tags">
+              <span class="tag">Budget</span>
+              <span class="tag">Brand</span>
+              <span class="tag">Camera</span>
+              <span class="tag">Performance</span>
+            </div>
+
+          </article>
+
+
+          <article class="category-card">
+
+            <div class="category-icon">💻</div>
+
+            <h3>Laptops</h3>
+
+            <p>
+              Find laptops for gaming, coding, college,
+              productivity and general use while respecting
+              your budget.
+            </p>
+
+            <div class="category-tags">
+              <span class="tag">Gaming</span>
+              <span class="tag">Coding</span>
+              <span class="tag">College</span>
+              <span class="tag">Productivity</span>
+            </div>
+
+          </article>
+
+
+          <article class="category-card">
+
+            <div class="category-icon">👟</div>
+
+            <h3>Shoes</h3>
+
+            <p>
+              Get recommendations for running, everyday wear,
+              comfort and other use cases from the available catalog.
+            </p>
+
+            <div class="category-tags">
+              <span class="tag">Running</span>
+              <span class="tag">Daily use</span>
+              <span class="tag">Comfort</span>
+              <span class="tag">Sport</span>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+         ========================= -->
+
+    <section id="how-it-works">
+
+      <div class="container">
+
+        <div class="section-head">
+          <span class="section-kicker">Under the hood</span>
+
+          <h2>
+            Simple for the user.
+            Intelligent underneath.
+          </h2>
+
+          <p>
+            Instead of hard-coded recommendation buttons, Shopie Guide
+            combines conversational AI with a structured product
+            knowledge source.
+          </p>
+        </div>
+
+
+        <div class="steps-grid">
+
+          <article class="step-card">
+            <div class="step-number">01</div>
+
+            <h3>Understand</h3>
+
+            <p>
+              The assistant interprets natural-language requests such
+              as budget, category, brand, use case and specific
+              requirements.
+            </p>
+          </article>
+
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+
+            <h3>Retrieve</h3>
+
+            <p>
+              Shopie Guide searches the connected ProductCatalog to
+              find products that can be verified from the project's
+              structured data.
+            </p>
+          </article>
+
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+
+            <h3>Recommend</h3>
+
+            <p>
+              The assistant ranks relevant options and explains why
+              they match the user's requirements, including price,
+              rating and important specifications.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRY IT
+         ========================= -->
+
+    <section class="prompt-section" id="try-it">
+
+      <div class="container">
+
+        <div class="section-head">
+          <span class="section-kicker">Try Shopie Guide</span>
+
+          <h2>
+            Ask naturally.
+            Shop conversationally.
+          </h2>
+
+          <p>
+            You do not need a complicated filter system. Tell Shopie
+            Guide what you are looking for in your own words.
+          </p>
+        </div>
+
+
+        <div class="prompt-grid">
+
+          <div class="prompt-card">
+            <span class="prompt-label">Budget</span>
+            <span class="prompt-text">
+              “I need a phone under ₹30,000.”
+            </span>
+          </div>
+
+          <div class="prompt-card">
+            <span class="prompt-label">Use case</span>
+            <span class="prompt-text">
+              “Recommend a gaming laptop under ₹80,000.”
+            </span>
+          </div>
+
+          <div class="prompt-card">
+            <span class="prompt-label">Brand</span>
+            <span class="prompt-text">
+              “Show me Samsung phones under ₹50,000.”
+            </span>
+          </div>
+
+          <div class="prompt-card">
+            <span class="prompt-label">Compare</span>
+            <span class="prompt-text">
+              “Compare two phones under ₹40,000.”
+            </span>
+          </div>
+
+          <div class="prompt-card">
+            <span class="prompt-label">Activity</span>
+            <span class="prompt-text">
+              “I need running shoes under ₹10,000.”
+            </span>
+          </div>
+
+          <div class="prompt-card">
+            <span class="prompt-label">Multiple requirements</span>
+            <span class="prompt-text">
+              “I need a laptop for college and coding under ₹70,000.”
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT / TRUST
+         ========================= -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-head">
+          <span class="section-kicker">Responsible recommendations</span>
+
+          <h2>
+            Useful AI with clear boundaries.
+          </h2>
+
+          <p>
+            Shopie Guide is designed to stay grounded in its available
+            catalog and clearly communicate the limits of demonstration
+            marketplace data.
+          </p>
+        </div>
+
+
+        <div class="trust-grid">
+
+          <article class="trust-card">
+
+            <h3>Catalog-grounded answers</h3>
+
+            <p>
+              Product recommendations are based on the connected
+              ProductCatalog rather than invented products or unsupported
+              product claims.
+            </p>
+
+            <div class="trust-list">
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                Product name and brand
+              </div>
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                Price and rating
+              </div>
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                Relevant specifications
+              </div>
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                Requirement-aware recommendations
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="trust-card">
+
+            <h3>Demo data, not live marketplace data</h3>
+
+            <p>
+              The catalog contains indicative demonstration data.
+              Prices, ratings, reviews and availability should not be
+              treated as live Amazon, Flipkart or other marketplace
+              information.
+            </p>
+
+            <div class="trust-list">
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                Transparent data limitations
+              </div>
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                No invented purchasing links
+              </div>
+
+              <div class="trust-item">
+                <span class="trust-check">✓</span>
+                No false claims of live inventory
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL CTA
+         ========================= -->
+
+    <section class="cta-section">
+
+      <div class="container">
+
+        <div class="cta-card">
+
+          <div>
+            <h2>
+              Tell Shopie Guide what you're looking for.
+            </h2>
+
+            <p>
+              Try a budget, a brand, a use case or a combination
+              of requirements and let the assistant narrow down
+              the options.
+            </p>
+          </div>
+
+          <button class="primary-btn" type="button" onclick="openShopieGuide()">
+            Open Shopie Guide
+            <span>→</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+       ========================= -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div class="footer-copy">
+        <strong>Shopie Guide</strong> — AI-powered e-commerce
+        product recommendation demo.
+        <br>
+        Built by <strong>Ashish Sharma</strong> · AI & Data Science Student
+      </div>
+
+      <div class="footer-links">
+
+        <a
+          href="https://github.com/ashishsrs01"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://github.com/ashishsrs01/Mini-E-commerce-guide-chatbot"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Repository
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    function openShopieGuide() {
+      if (
+        window.botpress &&
+        typeof window.botpress.open === "function"
+      ) {
+        window.botpress.open();
+      } else {
+        setTimeout(() => {
+          if (
+            window.botpress &&
+            typeof window.botpress.open === "function"
+          ) {
+            window.botpress.open();
+          } else {
+            alert("Shopie Guide is still loading. Please try again in a moment.");
+          }
+        }, 800);
+      }
+    }
+  </script>
 
 </body>
 </html>
