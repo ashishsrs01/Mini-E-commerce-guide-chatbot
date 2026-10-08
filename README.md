@@ -1,239 +1,380 @@
 # Shopie Guide 🛍️🤖
 
-> An AI-powered e-commerce product discovery and recommendation assistant built with Botpress and deployed on GitHub Pages.
+> **A no-code AI shopping assistant that helps customers discover the right products through natural conversation.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-22272e?style=for-the-badge)](https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/)
-[![Botpress](https://img.shields.io/badge/AI-Botpress-167d88?style=for-the-badge)](https://botpress.com/)
-[![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-e34f26?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web)
-[![Hosting](https://img.shields.io/badge/Hosting-GitHub%20Pages-24292f?style=for-the-badge)](https://pages.github.com/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-20242b?style=for-the-badge)](https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/)
+[![Botpress](https://img.shields.io/badge/Powered%20by-Botpress-167d88?style=for-the-badge)](https://botpress.com/)
+[![No Code](https://img.shields.io/badge/Approach-No--Code%20%2F%20Low--Code-167d88?style=for-the-badge)](https://botpress.com/)
 
 ## 🔗 Live Demo
 
-**Try Shopie Guide:**  
-https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/
+### 👉 https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/
 
-Use the **Chat with Shopie Guide** button to start a conversation with the AI product advisor.
+Shopie Guide turns a product catalog into a conversational shopping experience.
 
----
+Customers can simply say:
 
-## 📌 Overview
+> "I need a phone under ₹30,000."
 
-**Shopie Guide** is a conversational AI assistant built to help users discover and compare products through natural language.
-
-Instead of navigating a rigid sequence of category and budget buttons, users can simply describe what they need:
-
-> "I need a gaming laptop under ₹80,000."
+> "Recommend a gaming laptop under ₹80,000."
 
 > "Show me Samsung phones under ₹50,000."
 
-> "I need running shoes under ₹10,000."
-
 > "Compare two phones under ₹40,000."
 
-Shopie Guide searches a structured product catalog, applies the user's requirements, and returns relevant recommendations with product details and reasoning.
-
-### Core pipeline
-
-**Natural Language → Retrieval → Filtering → Ranking → Explanation**
+The assistant understands the request, searches the connected catalog, and recommends relevant options.
 
 ---
 
-## ✨ Features
+# 💡 What is Shopie Guide?
 
-### 🤖 Conversational Product Discovery
+**Shopie Guide** is a customer-facing AI product discovery assistant designed for e-commerce websites.
 
-Users can describe their shopping requirements naturally rather than following a fixed chatbot flow.
+Instead of forcing customers to:
 
-### 💰 Budget-Aware Recommendations
+- open multiple filters
+- select complicated dropdowns
+- browse long product lists
+- compare products manually
 
-The assistant understands expressions such as:
+they can simply **tell the website what they need**.
 
-- Under ₹30,000
+### Example
+
+A customer says:
+
+> "I need a laptop for college and coding under ₹70,000."
+
+Shopie Guide can understand:
+
+**Category → Laptop**  
+**Budget → ₹70,000**  
+**Use case → College + Coding**
+
+It then searches the product catalog and presents suitable options.
+
+---
+
+# 🚀 Why Businesses Would Use It
+
+## 🧑‍💻 No-code / low-code approach
+
+Shopie Guide is designed around a visual AI platform rather than requiring a business to build and maintain a custom chatbot backend.
+
+The AI behavior, knowledge source and conversational experience can be configured without building a full recommendation system from scratch.
+
+## ⚡ Easy website integration
+
+For a prepared bot and product catalog, the website integration is designed to take **roughly an hour** for a simple website.
+
+The basic process is:
+
+**Configure → Add Catalog → Test → Copy Webchat Code → Embed**
+
+No custom chat server is required for the website itself.
+
+## 🛍️ Conversational product discovery
+
+Customers can ask for what they want in normal language instead of learning a store's filter system.
+
+## 💰 Budget-aware shopping
+
+Customers can specify:
+
+- under ₹30,000
+- around ₹50,000
 - 30k
-- Around ₹50,000
-- Between ₹40,000 and ₹60,000
+- between ₹40,000 and ₹60,000
 
-Budget is treated as an important recommendation constraint.
+## 🎯 Use-case aware recommendations
 
-### 🎯 Requirement-Aware Ranking
-
-The user's primary use case influences the recommendation ranking.
+The assistant can use the customer's intended use when ranking products.
 
 Examples:
 
-- Gaming → prioritize gaming-oriented laptops
-- Running → prioritize running shoes
-- Photography → prioritize relevant camera-oriented phones
-- College + coding → prioritize suitable laptops for those requirements
+- Gaming laptops
+- Coding laptops
+- College laptops
+- Running shoes
+- Everyday shoes
+- Photography-oriented phones
 
-### 🔎 Catalog-Grounded Answers
+## ⚖️ Product comparison
 
-Product information is retrieved from the connected ProductCatalog instead of being invented by the assistant.
+Customers can ask:
 
-### ⚖️ Product Comparison
+> "Compare the first two."
 
-Users can compare products using factors such as:
+> "Which one is better for gaming?"
 
-- Price
-- Rating
-- Specifications
-- Intended use
-- Overall fit for their requirements
-
-### 💬 Context-Aware Follow-Ups
-
-Shopie Guide understands follow-up requests such as:
-
-- "Tell me more about the first one."
-- "Compare the first two."
-- "Is there a cheaper option?"
-- "Which one do you recommend?"
-
-### 🛡️ Transparent Data Boundaries
-
-The catalog is an indicative demonstration dataset, not live marketplace inventory. Shopie Guide does not claim live Amazon, Flipkart, or other marketplace pricing or availability.
+> "Is there a cheaper option?"
 
 ---
 
-## 🛍️ Supported Categories
+# ⏱️ Designed for Integration in About 1 Hour
 
-| Category | What Shopie Guide Can Help With |
-|---|---|
-| 📱 Phones | Budget, brand, camera, performance, everyday use |
-| 💻 Laptops | Gaming, coding, college, productivity, general use |
-| 👟 Shoes | Running, daily use, comfort, sport |
+The concept is intentionally simple for websites that already have their product information ready.
 
----
+### Step 1 — Prepare the product catalog
 
-## 📊 Product Catalog
+Provide a structured catalog containing fields such as:
 
-The current Shopie Guide catalog contains approximately **490 product entries** across the three supported categories.
-
-The structured data includes fields such as:
-
-- Product ID
+- Product name
 - Category
 - Brand
-- Model
-- Variant
-- Color
 - Price
+- Specifications
+- Use case
+- Variant
 - Rating
-- Review count
-- Stock status
-- Best-for / use case
-- Key specifications
-- Warranty
-- Data note
 
-The catalog is imported into **Botpress Tables** and connected to the **Knowledge Base**, allowing the Autonomous Node to retrieve product information through natural-language requests.
+### Step 2 — Add the catalog to the AI knowledge layer
 
-> **Important:** The catalog is intended for demonstration purposes. Its prices, ratings, reviews, stock status, and availability should not be treated as live marketplace information.
+Import the catalog into the Botpress Table and connect it to the Knowledge Base.
+
+### Step 3 — Configure Shopie Guide
+
+Define:
+
+- What the business sells
+- Supported categories
+- Recommendation rules
+- Budget behavior
+- Product information rules
+- Data boundaries
+- Brand and use-case behavior
+
+### Step 4 — Test customer questions
+
+Test realistic requests involving:
+
+- Budget
+- Brand
+- Use case
+- Multiple requirements
+- Comparisons
+- No-match situations
+
+### Step 5 — Embed
+
+Copy the Webchat code generated by Botpress and add it to the website.
+
+### Result
+
+For a simple website with a prepared catalog, the intended setup can be completed in **around one hour**, with additional time depending on branding, catalog preparation and website customization.
 
 ---
 
-## 🧠 Architecture
+# 🧠 How It Works
+
+The customer sees a simple chat interface.
+
+Behind the scenes:
 
 ~~~text
-                    ┌─────────────────────┐
-                    │       User          │
-                    │ Natural-language    │
-                    │      request        │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │ Botpress Autonomous │
-                    │        Node         │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   Knowledge Base    │
-                    │      Search         │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   ProductCatalog    │
-                    │   Botpress Table    │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │ Filter + Requirement│
-                    │  aware ranking      │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │ Recommendation +    │
-                    │      Explanation    │
-                    └─────────────────────┘
+Customer
+   │
+   ▼
+Natural-language request
+   │
+   ▼
+Shopie Guide AI
+   │
+   ▼
+Knowledge Base
+   │
+   ▼
+Product Catalog
+   │
+   ▼
+Requirement filtering
+   │
+   ▼
+Relevant product ranking
+   │
+   ▼
+Recommendation + explanation
+   │
+   ▼
+Customer decision
 ~~~
 
----
+### Core process
 
-## ⚙️ How It Works
+**Understand → Retrieve → Filter → Rank → Explain**
 
-A request such as:
-
-> "I need a phone under ₹30,000 for everyday use."
-
-is processed as follows:
-
-1. Identify the product category.
-2. Extract the user's budget.
-3. Understand the intended use.
-4. Search the ProductCatalog.
-5. Filter products using the requirements.
-6. Rank the strongest matches.
-7. Return product details and explain the recommendation.
-
-The bot is instructed to prioritize the user's actual requirements rather than simply returning the highest-rated or cheapest item.
+The goal is to make product discovery conversational.
 
 ---
 
-## 🧩 AI Design Principles
+# 🏪 Example Business Experience
 
-### Grounded Retrieval
+Imagine a customer visiting an online electronics store.
 
-Product-related responses are based on the connected ProductCatalog.
+Instead of searching through dozens of filters, they type:
 
-### No Fabrication
+> "I need a laptop for coding and gaming under ₹80,000."
 
-The assistant should not invent products, prices, specifications, ratings, reviews, warranties, availability, or purchase links.
+Shopie Guide can identify:
 
-### Requirement Priority
+**Category:** Laptop  
+**Budget:** ₹80,000  
+**Use case:** Coding + Gaming
 
-The primary use case is prioritized alongside budget, specifications, brand preference, ratings, and other constraints.
+It searches the connected catalog and returns relevant options with:
 
-### Context Awareness
+- Product name
+- Brand
+- Price
+- Rating
+- Key specifications
+- Why the product matches
 
-Follow-up questions use the current conversation context.
+The customer can then continue:
 
-### Transparent Limitations
+> "Compare the first two."
 
-The assistant clearly distinguishes demonstration data from live marketplace information.
+or:
+
+> "Do you have something cheaper?"
+
+This creates a much more natural shopping journey.
 
 ---
 
-## 🛠️ Tech Stack
+# 🛒 Current Shopie Guide Demo
+
+The current demonstration supports:
+
+### 📱 Phones
+
+Budget, brand, performance, photography and everyday-use discovery.
+
+### 💻 Laptops
+
+Gaming, coding, college, productivity and general-use discovery.
+
+### 👟 Shoes
+
+Running, daily wear, comfort and sport-oriented discovery.
+
+The demo catalog contains approximately **490 product entries** across these categories.
+
+---
+
+# 🤖 What Shopie Guide Can Do
+
+### Find products
+
+> "Find me a phone under ₹30,000."
+
+### Filter products
+
+> "Show me Samsung phones under ₹50,000."
+
+### Recommend products
+
+> "What's a good laptop for college and coding?"
+
+### Compare products
+
+> "Compare two phones under ₹40,000."
+
+### Match use cases
+
+> "I need running shoes for daily use."
+
+### Continue the conversation
+
+> "Tell me more about the first one."
+
+### Find alternatives
+
+> "Is there a cheaper option?"
+
+### Handle no-match requests
+
+When there is no exact match in the catalog, the assistant should say so rather than inventing a product.
+
+---
+
+# 🔎 Catalog-Grounded Recommendations
+
+One of the important design goals is to keep product answers grounded in structured data.
+
+Shopie Guide is configured not to invent:
+
+- Product names
+- Prices
+- Ratings
+- Review counts
+- Specifications
+- Warranty information
+- Availability
+- Purchase links
+
+Instead, product information comes from the connected ProductCatalog.
+
+This makes the assistant easier to control than a generic chatbot that can freely generate unsupported product claims.
+
+---
+
+# 🛡️ Transparent Data Boundaries
+
+The current catalog is an **indicative demonstration dataset**.
+
+It is not a live Amazon, Flipkart or other marketplace feed.
+
+Therefore:
+
+- Prices are indicative.
+- Ratings are indicative.
+- Review counts are indicative.
+- Stock information is not guaranteed to be live.
+- Availability is not guaranteed.
+- The demo cannot place orders.
+- The demo does not process payments.
+
+For a real e-commerce deployment, the demo catalog would be replaced or connected to the business's maintained or live product data.
+
+---
+
+# 🎨 Customer Experience
+
+The showcase website is designed to demonstrate how the assistant can sit naturally inside an e-commerce experience.
+
+The customer journey is:
+
+**Visit → Ask → Discover → Compare → Decide**
+
+The page includes:
+
+- Shopie Guide branding
+- Product category overview
+- Example customer questions
+- How the AI recommendation process works
+- Responsible-data messaging
+- Embedded Botpress Webchat
+
+---
+
+# 🛠️ Technology
 
 | Layer | Technology |
 |---|---|
-| Conversational AI | **Botpress Cloud** |
-| AI Agent | **Autonomous Node** |
+| AI assistant | **Botpress Cloud** |
+| AI behavior | **Autonomous Node** |
 | Knowledge | **Botpress Knowledge Base** |
-| Structured Data | **Botpress Table / ProductCatalog** |
-| Frontend | **HTML5 + CSS3 + JavaScript** |
-| Webchat | **Botpress Webchat v3.7** |
+| Catalog | **Botpress Table / ProductCatalog** |
+| Website | **HTML + CSS + JavaScript** |
+| Chat | **Botpress Webchat** |
 | Hosting | **GitHub Pages** |
-| Version Control | **Git + GitHub** |
+
+The AI layer follows a no-code / low-code approach, while the website uses lightweight frontend code for branding and integration.
 
 ---
 
-## 📁 Repository Structure
+# 📁 Repository Structure
 
 ~~~text
 Mini-E-commerce-guide-chatbot/
@@ -248,171 +389,117 @@ Mini-E-commerce-guide-chatbot/
 
 ### index.html
 
-The public-facing Shopie Guide showcase website containing:
-
-- Shopie Guide branding
-- Product discovery landing page
-- Supported categories
-- Example shopping prompts
-- Project architecture explanation
-- Responsible-AI/data notes
-- Botpress Webchat integration
+Customer-facing Shopie Guide showcase and Botpress Webchat integration.
 
 ### data/products.csv
 
-Original/local sample product data retained in the repository.
+Original/local sample product data retained with the project.
 
-The current conversational demo uses the **ProductCatalog configured in Botpress** as its primary product knowledge source.
+The current conversational demo uses the ProductCatalog configured in Botpress as its primary product knowledge source.
 
 ---
 
-## 🚀 Deployment
+# 🌐 Website Integration
 
-The website is deployed as a static site through GitHub Pages.
+The integration model is intentionally lightweight.
 
 ~~~text
-GitHub Repository
+Existing Website
+       │
+       │  Add Botpress Webchat
+       ▼
+ Shopie Guide
        │
        ▼
-   index.html
-       │
-       ▼
- GitHub Pages
-       │
-       ▼
-Shopie Guide Website
-       │
-       ▼
- Botpress Webchat
-       │
-       ▼
- Shopie Guide Agent
+ Product Knowledge
 ~~~
 
-The website provides the public interface, while the conversational AI and product knowledge are handled through Botpress.
+A website can use the Botpress-generated Webchat code without building a custom chatbot backend.
+
+The same concept can be adapted for:
+
+- E-commerce storefronts
+- Product landing pages
+- Catalog websites
+- Small business websites
+- Static websites
+- Customer-support product pages
 
 ---
 
-## 🧪 Example Prompts
+# 🔄 Project Evolution
 
-Try these in the live demo:
+This project originally started as a simple low-code e-commerce chatbot using a fixed conversation flow.
 
-**Budget**
+The earlier experience was:
 
-> I need a phone under ₹30,000.
+**Welcome → Category → Budget → Product**
 
-**Gaming**
+The current Shopie Guide experience is:
 
-> Recommend a gaming laptop under ₹80,000.
+**Customer Request → AI Understanding → Catalog Retrieval → Requirement Matching → Recommendation**
 
-**Brand**
-
-> Show me Samsung phones under ₹50,000.
-
-**Running**
-
-> I need running shoes under ₹10,000.
-
-**Comparison**
-
-> Compare two phones under ₹40,000.
-
-**Multiple requirements**
-
-> I need a laptop for college and coding under ₹70,000.
-
-**Conversation context**
-
-> Tell me more about the first product.
+This makes the assistant more flexible and much closer to a conversational product advisor.
 
 ---
 
-## ⚠️ Limitations
+# 🔮 Production Extensions
 
-Shopie Guide is a demonstration project and is not connected to a live e-commerce marketplace API.
+The current project is a demonstration of the concept.
 
-Therefore:
+A production implementation could add:
 
-- Prices are indicative.
-- Ratings are indicative.
-- Review counts are indicative.
-- Stock information is not guaranteed to be live.
-- Availability is not guaranteed.
-- The assistant cannot place orders.
-- The assistant cannot process payments.
-- The assistant cannot guarantee marketplace availability.
-- Purchase links should not be assumed to be verified.
-
-These limitations are intentionally communicated by the assistant.
-
----
-
-## 🎯 Project Goal
-
-The project demonstrates how conversational AI can make e-commerce product discovery more flexible by combining:
-
-**Natural Language + Structured Data + Retrieval + Recommendation Logic**
-
-The current version moves beyond a simple fixed-flow chatbot by allowing users to express more flexible shopping requirements and receive catalog-grounded recommendations.
-
----
-
-## 🔮 Future Improvements
-
-Potential future iterations include:
-
-- Live product APIs for real-time pricing and availability
-- Verified marketplace links
-- Additional product categories
-- Personalized user preference profiles
-- Recommendation feedback and preference learning
-- More advanced product ranking
-- Semantic similarity-based recommendations
-- Shopping analytics
+- Live inventory APIs
+- Real-time pricing
+- Verified product links
+- Checkout integrations
+- Customer preference profiles
+- Recommendation feedback
+- Additional categories
+- Analytics and conversion tracking
+- CRM or helpdesk integration
 - Multilingual support
-- User accounts and saved recommendations
+- Personalized offers
 
 ---
 
-## 👨‍💻 Author
+# 🎯 Vision
+
+The idea behind Shopie Guide is simple:
+
+> **Turn an e-commerce catalog into a conversational shopping experience.**
+
+Instead of asking customers to learn how to search a store, let the store understand the customer.
+
+**Less filtering.  
+Less searching.  
+More guided discovery.**
+
+---
+
+# 👨‍💻 Author
 
 **Ashish Sharma**  
 AI & Data Science Student
 
-**GitHub:**  
+GitHub:  
 https://github.com/ashishsrs01
 
-**Project Repository:**  
+Project Repository:  
 https://github.com/ashishsrs01/Mini-E-commerce-guide-chatbot
 
 ---
 
-## 📜 Project Evolution
+# ⭐ Try Shopie Guide
 
-This project originally started as a low-code e-commerce chatbot exercise using a fixed conversational flow and WotNot.
+### Live Demo
 
-It has since been redesigned as **Shopie Guide** using:
-
-- Botpress Cloud
-- Autonomous Node
-- Knowledge Base
-- Structured ProductCatalog
-- Requirement-aware recommendation behavior
-- Botpress Webchat
-- A redesigned GitHub Pages showcase
-
-This evolution demonstrates the transition from a basic fixed-flow chatbot to a more flexible, knowledge-grounded conversational product assistant.
-
----
-
-## ⭐ Try It
-
-**Live Demo:**  
 https://ashishsrs01.github.io/Mini-E-commerce-guide-chatbot/
 
-**Repository:**  
+### Repository
+
 https://github.com/ashishsrs01/Mini-E-commerce-guide-chatbot
 
 <p align="center">
-  Built with 🤖 AI, structured data, and thoughtful recommendation logic.
+  <strong>Shop smarter. Ask naturally. 🛍️🤖</strong>
 </p>
